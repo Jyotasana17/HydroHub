@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HydroHub - Sign Up</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .signup-container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .signup-container h1 {
+            margin-bottom: 30px;
+            color: #1976d2;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #1976d2;
+            outline: none;
+        }
+
+        .tooltip {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .password-strength {
+            margin-top: 5px;
+            height: 5px;
+            background: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .strength-bar {
+            height: 100%;
+            transition: width 0.3s;
+        }
+
+        .weak { background: red; width: 33%; }
+        .medium { background: orange; width: 66%; }
+        .strong { background: green; width: 100%; }
+
+        .terms {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .terms input {
+            margin-right: 10px;
+        }
+
+        .signup-btn {
+            background: linear-gradient(45deg, #1976d2, #42a5f5);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 15px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .signup-btn:hover {
+            background: linear-gradient(45deg, #0d47a1, #1976d2);
+        }
+
+        .links {
+            margin-top: 20px;
+        }
+
+        .links a {
+            color: #1976d2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            width: 30%;
+            height: 5px;
+            background: #ddd;
+            border-radius: 5px;
+        }
+
+        .step.active {
+            background: #1976d2;
+        }
+
+        @media (max-width: 768px) {
+            .signup-container {
+                padding: 20px;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1><i class="fas fa-water"></i> HydroHub Sign Up</h1>
+        <div class="progress">
+            <div class="step active"></div>
+            <div class="step"></div>
+            <div class="step"></div>
+        </div>
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="full-name"><i class="fas fa-user"></i> Full Name</label>
+                <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+                <div class="tooltip">Your legal name as it appears on official documents.</div>
+                <div class="error" id="name-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="dam-name"><i class="fas fa-building"></i> Dam Name</label>
+                <input type="text" id="dam-name" name="dam-name" placeholder="e.g., Hoover Dam" required>
+                <div class="tooltip">The name of the dam you are associated with.</div>
+                <div class="error" id="dam-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="river-basin"><i class="fas fa-stream"></i> River Basin Name</label>
+                <input type="text" id="river-basin" name="river-basin" placeholder="e.g., Colorado River Basin" required>
+                <div class="tooltip">The river basin where the dam is located.</div>
+                <div class="error" id="basin-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="company-name"><i class="fas fa-industry"></i> Company Name</label>
+                <input type="text" id="company-name" name="company-name" placeholder="e.g., HydroCorp Inc." required>
+                <div class="tooltip">The company or organization you represent.</div>
+                <div class="error" id="company-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="role"><i class="fas fa-briefcase"></i> Role/Position</label>
+                <select id="role" name="role" required>
+                    <option value="">Select your role</option>
+                    <option value="manager">Dam Manager</option>
+                    <option value="engineer">Engineer</option>
+                    <option value="operator">Operator</option>
+                    <option value="analyst">Data Analyst</option>
+                    <option value="admin">Administrator</option>
+                    <option value="other">Other</option>
+                </select>
+                <div class="tooltip">Your job title or position in the organization.</div>
+                <div class="error" id="role-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="e.g., +1-123-456-7890" required>
+                <div class="tooltip">A contact number for verification and alerts.</div>
+                <div class="error" id="phone-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="username"><i class="fas fa-user"></i> Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" required>
+                <div class="tooltip">Choose a unique username for login.</div>
+                <div class="error" id="username-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter email" required>
+                <div class="tooltip">Your email address for account recovery and notifications.</div>
+                <div class="error" id="email-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
+                <div class="password-strength">
+                    <div class="strength-bar" id="strength-bar"></div>
+                </div>
+                <div class="tooltip">Password must be at least 8 characters with uppercase, lowercase, number, and symbol.</div>
+                <div class="error" id="password-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password"><i class="fas fa-lock"></i> Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" required>
+                <div class="error" id="confirm-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="profile-pic"><i class="fas fa-camera"></i> Profile Picture (Optional)</label>
+                <input type="file" id="profile-pic" name="profile-pic" accept="image/*">
+                <div class="tooltip">Upload a profile picture (JPG, PNG, max 5MB).</div>
+            </div>
+            <div class="terms">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <a href="#" target="_blank">Terms and Conditions</a> and <a href="#" target="_blank">Privacy Policy</a>.</label>
+            </div>
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+        <div class="links">
+            <a href="login.html">Already have an account? Login</a>
+        </div>
+    </div>
+    <script>
+        // Password strength indicator
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const bar = document.getElementById('strength-bar');
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            bar.className = 'strength-bar';
+            if (strength <= 2) bar.classList.add('weak');
+            else if (strength <= 4) bar.classList.add('medium');
+            else bar.classList.add('strong');
+        });
+
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fullName = document.getElementById('full-name').value.trim();
+            const damName = document.getElementById('dam-name').value.trim();
+            const riverBasin = document.getElementById('river-basin').value.trim();
+            const companyName = document.getElementById('company-name').value.trim();
+            const role = document.getElementById('role').value;
+            const phone = document.getElementById('phone').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const terms = document.getElementById('terms').checked;
+
+            // Clear previous errors
+            document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+            let isValid = true;
+
+            if (!fullName || fullName.length < 2) {
+                document.getElementById('name-error').textContent = 'Full Name is required and must be at least 2 characters.';
+                isValid = false;
+            }
+            if (!damName) {
+                document.getElementById('dam-error').textContent = 'Dam Name is required.';
+                isValid = false;
+            }
+            if (!riverBasin) {
+                document.getElementById('basin-error').textContent = 'River Basin Name is required.';
+                isValid = false;
+            }
+            if (!companyName) {
+                document.getElementById('company-error').textContent = 'Company Name is required.';
+                isValid = false;
+            }
+            if (!role) {
+                document.getElementById('role-error').textContent = 'Please select a role.';
+                isValid = false;
+            }
+            if (!phone || !/^\+?[\d\s-()]+$/.test(phone)) {
+                document.getElementById('phone-error').textContent = 'Please enter a valid phone number.';
+                isValid = false;
+            }
+            if (!username || username.length < 3) {
+                document.getElementById('username-error').textContent = 'Username must be at least 3 characters.';
+                isValid = false;
+            }
+            if (!email || !/\S+@\S+\.\S+/.test(email)) {
+                document.getElementById('email-error').textContent = 'Please enter a valid email.';
+                isValid = false;
+            }
+            if (password.length < 8 || !/(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[^A-Za-z0-9])/.test(password)) {
+                document.getElementById('password-error').textContent = 'Password must be at least 8 characters with uppercase, lowercase, number, and symbol.';
+                isValid = false;
+            }
+            if (password !== confirmPassword) {
+                document.getElementById('confirm-error').textContent = 'Passwords do not match.';
+                isValid = false;
+            }
+            if (!terms) {
+                alert('You must agree to the Terms and Conditions.');
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert("Sign-up successful for ${fullName} (${username}) at ${damName} in ${riverBasin}!");
+                // Redirect to login
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>

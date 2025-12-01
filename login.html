@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HydroHub Login</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #e3f2fd;
+        }
+        .login-box {
+            width: 400px;
+            margin: 8% auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover { background: #0d47a1; }
+    </style>
+</head>
+<body>
+
+<div class="login-box">
+    <h2>Dam Login</h2>
+    <form action="login_process.php" method="POST">
+        <label>Dam Name</label>
+        <input type="text" name="dam-name" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+</body>
+</html>

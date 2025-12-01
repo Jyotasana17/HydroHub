@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HydroHub - Sign Up</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #333;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1976d2, #0d47a1);
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin: 15px 0;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .sidebar a i {
+            margin-right: 10px;
+        }
+
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 260px;
+            width: calc(100% - 260px);
+            height: 80px;
+            background: #ffffff;
+            color: #1976d2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+
+        .topbar .left {
+            display: flex;
+            align-items: center;
+        }
+
+        .topbar h1 {
+            margin: 0 20px 0 0;
+            font-weight: 500;
+        }
+
+        #current-time {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .topbar .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .topbar a {
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .topbar a:hover {
+            color: #0d47a1;
+        }
+
+        .topbar a i {
+            margin-right: 5px;
+        }
+
+        .main-content {
+            /* margin-left: 180px;
+            margin-top: 40px; */
+            justify-content: center;
+            padding: 20px;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .signup-container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .signup-container h2 {
+            margin-bottom: 30px;
+            color: #1976d2;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section h3 {
+            margin-bottom: 15px;
+            color: #1976d2;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #1976d2;
+            outline: none;
+        }
+
+        .signup-btn {
+            background: linear-gradient(45deg, #1976d2, #42a5f5);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 15px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .signup-btn:hover {
+            background: linear-gradient(45deg, #0d47a1, #1976d2);
+        }
+
+        .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .links a {
+            color: #1976d2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .topbar {
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                height: auto;
+                padding: 10px;
+            }
+            .topbar .nav-links {
+                margin-top: 10px;
+            }
+            .main-content {
+                margin-left: 0;
+                margin-top: 160px;
+            }
+            .signup-container {
+                padding: 20px;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="sidebar">
+        <h2><i class="fas fa-water"></i> HydroHub</h2>
+        <ul>
+            <li><a href="main-dashboard.html"><i class="fas fa-home"></i> Main Dashboard</a></li>
+            <li><a href="dam-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dam Management</a></li>
+            <li><a href="corporate-dashboard.html"><i class="fas fa-building"></i> Corporate Office</a></li>
+            <li><a href="ai-center.html"><i class="fas fa-brain"></i> AI Center</a></li>
+            <li><a href="mobile-home.html"><i class="fas fa-mobile-alt"></i> Mobile</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            <li><a href="signup.html"><i class="fas fa-user-plus"></i> Sign Up</a></li>
+        </ul>
+    </div> -->
+    <!-- <div class="topbar"> -->
+        <!-- <div class="left">
+            <h1>HydroHub Sign Up</h1>
+            <span id="current-time">12:30</span>
+        </div>
+        <div class="nav-links">
+            <a href="main-dashboard.html"><i class="fas fa-home"></i> Main</a>
+            <a href="dam-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dam</a>
+            <a href="corporate-dashboard.html"><i class="fas fa-building"></i> Corporate</a>
+            <a href="ai-center.html"><i class="fas fa-brain"></i> AI</a>
+            <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+            <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+        </div>
+    </div> -->
+    <div class="main-content">
+        <div class="signup-container">
+            <h2><i class="fas fa-user-plus"></i> Create Your Profile</h2>
+            <form id="signup-form">
+                <div class="form-section">
+                    <h3>Basic Information</h3>
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username"><i class="fas fa-user"></i> Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password"><i class="fas fa-lock"></i> Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" required>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <h3>Dam Details</h3>
+                    <div class="form-group">
+                        <label for="dam-name"><i class="fas fa-building"></i> Dam Name</label>
+                        <input type="text" id="dam-name" name="dam-name" placeholder="e.g., Hoover Dam" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="river-basin"><i class="fas fa-stream"></i> River Basin Name</label>
+                        <input type="text" id="river-basin" name="river-basin" placeholder="e.g., Colorado River Basin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location"><i class="fas fa-map-marker-alt"></i> Location (City/Country)</label>
+                        <input type="text" id="location" name="location" placeholder="e.g., Boulder City, USA" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="altitude"><i class="fas fa-mountain"></i> Altitude (m)</label>
+                        <input type="number" id="altitude" name="altitude" placeholder="e.g., 1500" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="width"><i class="fas fa-arrows-alt-h"></i> Width of Dam (m)</label>
+                        <input type="number" id="width" name="width" placeholder="e.g., 200" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="length"><i class="fas fa-arrows-alt-v"></i> Length of Dam (m)</label>
+                        <input type="number" id="length" name="length" placeholder="e.g., 500" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="num-gates"><i class="fas fa-gate"></i> Number of Gates</label>
+                        <input type="number" id="num-gates" name="num-gates" placeholder="e.g., 10" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reservoir-capacity"><i class="fas fa-water"></i> Reservoir Water Capacity (million m³)</label>
+                        <input type="number" id="reservoir-capacity" name="reservoir-capacity" placeholder="e.g., 35.2" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="electricity-generation"><i class="fas fa-bolt"></i> Electricity Generation Capacity (MW)</label>
+                        <input type="number" id="electricity-generation" name="electricity-generation" placeholder="e.g., 2070" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="year-construction"><i class="fas fa-calendar-alt"></i> Year of Construction</label>
+                        <input type="number" id="year-construction" name="year-construction" placeholder="e.g., 1936" min="1800" max="2023" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dam-type"><i class="fas fa-cogs"></i> Type of Dam</label>
+                        <select id="dam-type" name="dam-type" required>
+                            <option value="">Select Type</option>
+                            <option value="gravity">Gravity</option>
+                            <option value="arch">Arch</option>
+                            <option value="buttress">Buttress</option>
+                            <option value="earthfill">Earthfill</option>
+                            <option value="rockfill">Rockfill</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="purpose"><i class="fas fa-tasks"></i> Primary Purpose</label>
+                        <select id="purpose" name="purpose" required>
+                            <option value="">Select Purpose</option>
+                            <option value="hydroelectric">Hydroelectric</option>
+                            <option value="irrigation">Irrigation</option>
+                            <option value="flood-control">Flood Control</option>
+                            <option value="water-supply">Water Supply</option>
+                            <option value="recreation">Recreation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="operator"><i class="fas fa-users-cog"></i> Operator/Owner</label>
+                        <input type="text" id="operator" name="operator" placeholder="e.g., U.S. Bureau of Reclamation" required>
+                    </div>
+                </div>
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+            <div class="links">
+                <a href="login.html">Already have an account? Login</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleTimeString();
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const damName = document.getElementById('dam-name').value;
+            const riverBasin = document.getElementById('river-basin').value;
+            const location = document.getElementById('location').value;
+            const altitude = document.getElementById('altitude').value;
+            const width = document.getElementById('width').value;
+            const length = document.getElementById('length').value;
+            const numGates = document.getElementById('num-gates').value;
+            const reservoirCapacity = document.getElementById('reservoir-capacity').value;
+            const electricityGeneration = document.getElementById('electricity-generation').value;
+            const yearConstruction = document.getElementById('year-construction').value;
+            const damType = document.getElementById('dam-type').value;
+            const purpose = document.getElementById('purpose').value;
+            const operator = document.getElementById('operator').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+
+            if (email && username && password && damName && riverBasin && location && altitude && width && length && numGates && reservoirCapacity && electricityGeneration && yearConstruction && damType && purpose && operator) {
+                alert("Profile created for ${damName} in ${riverBasin}. Details: ${numGates} gates, ${reservoirCapacity}M m³ capacity, ${electricityGeneration} MW generation. Username: ${username}");
+                // Redirect to login or dashboard
+                window.location.href = 'login_register.php';
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+    </script>
+</body>
+</html>
