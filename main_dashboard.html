@@ -65,8 +65,8 @@
         .topbar {
             position: fixed;
             top: 0;
-            left: 260px;
-            width: calc(100% - 260px);
+            /* left: 260px; */
+            width: 100%;
             height: 80px;
             background: #ffffff;
             color: #1976d2;
@@ -117,35 +117,75 @@
         }
 
         .main-content {
-         
-            margin-left: 260px;
-            margin-top: 80px;
+            background-image: url("https://img.sanishtech.com/u/2ba18948fdf9d85e45a6fe1fa175992c.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* margin-left: 260px; */
+            margin-top: 100px;
             padding: 20px;
             min-height: calc(100vh - 80px);
+        }
+
+        .about-box {
+            background: rgba(255, 255, 255, 0.5); /* Made more transparent */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%; /* Match height of cards container */
+        }
+
+        .about-box h3 {
+            margin-top: 0;
+            color: #1976d2;
+            font-weight: 600;
         }
 
         .card {
             background: white;
             border-radius: 12px;
-            padding: 20px;
-            margin: 10px;
+            padding: 15px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: transform 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            display: block; /* Block display */
+            width: 100%; /* Fill the grid cell */
+            text-align: center; /* Center content */
+
+            
+            padding: 25px;
+            box-sizing: border-box;
+            gap: 30px;
         }
 
         .card:hover {
             transform: translateY(-5px);
         }
 
+        .card i {
+            margin-bottom: 10px;
+            display: block; /* Ensure icon is block for centering */
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+
         .cards {
-            
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            display: grid; /* Grid for 2x2 layout */
+            grid-template-columns: repeat(2, 180px); /* 2 columns, each 180px wide */
+            gap: 30px; /* Increased gap to prevent merging */
+            justify-content: center; /* Center the grid */
+
         }
 
         .button {
@@ -179,6 +219,14 @@
         .overview {
             text-align: center;
             margin-bottom: 40px;
+            color: white;
+        }
+
+        .bottom-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* About box takes 1 part, cards take 2 parts */
+            gap: 5px;
+            align-items: start; /* Align top */
         }
 
         @media (max-width: 768px) {
@@ -202,17 +250,29 @@
                 margin-top: 160px;
             }
             .cards {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Single column on mobile */
+                gap: 30px; /* Adjusted gap for mobile */
+
+                padding: 25px; /* Changed from 15px to 25px for more space inside */
+                box-sizing: border-box;
+
             }
             .main-nav {
                 flex-direction: column;
                 align-items: center;
             }
+            .bottom-section {
+                grid-template-columns: 1fr; /* Stack on mobile */
+                gap: 20px;
+            }
+            .about-box {
+                height: auto; /* Auto height on mobile */
+            }
         }
     </style>
 </head>
 <body>
-    <div class="sidebar">
+    <!-- <div class="sidebar">
         <h2><i class="fas fa-water"></i> HydroHub</h2>
         <ul>
             <li><a href="main-dashboard.html"><i class="fas fa-home"></i> Main Dashboard</a></li>
@@ -222,7 +282,7 @@
             <li><a href="mobile-home.html"><i class="fas fa-mobile-alt"></i> Mobile</a></li>
             <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
         </ul>
-    </div>
+    </div> -->
     <div class="topbar">
         <div class="left">
             <h1>HydroHub Main Dashboard</h1>
@@ -243,29 +303,35 @@
             <p>Select a dashboard to view specific data and insights.</p>
         </div>
         <div class="main-nav">
-            <button class="button" onclick="window.location='dam-dashboard.html'">Dam Management Dashboard</button>
-            <button class="button" onclick="window.location='corporate-dashboard.html'">Corporate Office Dashboard</button>
+            <button class="button" onclick="window.location='login.html'">Dam Management</button>
+            <button class="button" onclick="window.location='login.html'">Corporate Office</button>
         </div>
-        <div class="cards">
-            <div class="card">
-                <i class="fas fa-tint fa-2x" style="color: #1976d2;"></i>
-                <h3>System Status</h3>
-                <p>All Systems Operational</p>
+        <div class="bottom-section">
+            <div class="about-box">
+                <h3>About HydroHub</h3>
+                <p>HydroHub is an innovative platform designed to manage and monitor hydroelectric dams, providing real-time data, AI-driven insights, and corporate oversight for efficient energy production and sustainable water resource management. Our mission is to optimize hydropower operations while ensuring environmental safety and resource efficiency.</p>
             </div>
-            <div class="card">
-                <i class="fas fa-brain fa-2x" style="color: #42a5f5;"></i>
-                <h3>AI Insights</h3>
-                <p>Active and Monitoring</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-bell fa-2x" style="color: #1976d2;"></i>
-                <h3>Alerts</h3>
-                <p>No Critical Alerts</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-users fa-2x" style="color: #0d47a1;"></i>
-                <h3>Users Online</h3>
-                <p>5 Active</p>
+            <div class="cards">
+                <div class="card">
+                    <i class="fas fa-tint fa-2x" style="color: #1976d2;"></i>
+                    <h3>System Status</h3>
+                    <p>All Systems Operational</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-brain fa-2x" style="color: #42a5f5;"></i>
+                    <h3>AI Insights</h3>
+                    <p>Active and Monitoring</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-bell fa-2x" style="color: #1976d2;"></i>
+                    <h3>Alerts</h3>
+                    <p>No Critical Alerts</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-users fa-2x" style="color: #0d47a1;"></i>
+                    <h3>Users Online</h3>
+                    <p>5 Active</p>
+                </div>
             </div>
         </div>
     </div>
